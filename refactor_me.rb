@@ -18,7 +18,7 @@ TIME_OF_LIFES = [
   TimeOfLife.new('child', 7, 12),
   TimeOfLife.new('youth', 13, 18),
   TimeOfLife.new('adult', 19, Float::INFINITY)
-]
+].freeze
 
 def age_to_label(age)
   tol = TIME_OF_LIFES.find {|t| t.include?(age) }
