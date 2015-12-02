@@ -11,9 +11,9 @@ TIME_OF_LIFES = [
 ]
 
 def age_to_label(age)
-  0 <= age or raise
+  tol = TIME_OF_LIFES.find {|t| (t.min_age..t.max_age) === age }
 
-  TIME_OF_LIFES.find {|t| (t.min_age..t.max_age) === age }.label
+  tol ? tol.label : raise
 end
 
 class MyTest < Test::Unit::TestCase
