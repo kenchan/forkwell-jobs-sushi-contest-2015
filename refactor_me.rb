@@ -1,3 +1,5 @@
+require 'test/unit'
+
 def age_to_label(age)
   0 <= age or raise
 
@@ -11,5 +13,11 @@ def age_to_label(age)
     'youth'
   else
     'adult'
+  end
+end
+
+class MyTest < Test::Unit::TestCase
+  def test_0
+    assert_equal('', age_to_label(0))
   end
 end
