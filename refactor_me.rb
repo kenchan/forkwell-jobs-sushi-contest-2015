@@ -1,19 +1,25 @@
 require 'test/unit'
 
-tol = Struct.new('TimeOfLife', :label, :min_age, :max_age)
+class TimeOfLife
+  attr_reader :label, :min_age, :max_age
+
+  def initialize(label, min_age, max_age)
+    @label, @min_age, @max_age = label, min_age, max_age
+  end
+end
 
 TIME_OF_LIFES = [
-  tol.new('baby', 0, 2),
-  tol.new('little child', 3, 6),
-  tol.new('child', 7, 12),
-  tol.new('youth', 13, 18),
-  tol.new('adult', 19, Float::INFINITY)
+  TimeOfLife.new('baby', 0, 2),
+  TimeOfLife.new('little child', 3, 6),
+  TimeOfLife.new('child', 7, 12),
+  TimeOfLife.new('youth', 13, 18),
+  TimeOfLife.new('adult', 19, Float::INFINITY)
 ]
 
 def age_to_label(age)
   tol = TIME_OF_LIFES.find {|t| (t.min_age..t.max_age) === age }
 
-  tol ? tol.label : raise
+  tol&.label || raise
 end
 
 class MyTest < Test::Unit::TestCase
