@@ -62,4 +62,8 @@ class MyTest < Test::Unit::TestCase
   def test_immortality
     assert_equal('adult', age_to_label(200))
   end
+
+  def test_float
+    assert_equal('baby', age_to_label(0.1))
+  end
 end
