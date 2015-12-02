@@ -6,6 +6,10 @@ class TimeOfLife
   def initialize(label, min_age, max_age)
     @label, @min_age, @max_age = label, min_age, max_age
   end
+
+  def include?(age)
+   (@min_age..@max_age) === age
+  end
 end
 
 TIME_OF_LIFES = [
@@ -17,7 +21,7 @@ TIME_OF_LIFES = [
 ]
 
 def age_to_label(age)
-  tol = TIME_OF_LIFES.find {|t| (t.min_age..t.max_age) === age }
+  tol = TIME_OF_LIFES.find {|t| t.include?(age) }
 
   tol&.label || raise
 end
