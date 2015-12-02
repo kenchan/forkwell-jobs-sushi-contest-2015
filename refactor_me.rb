@@ -1,20 +1,19 @@
 require 'test/unit'
 
+tol = Struct.new('TimeOfLife', :label, :min_age, :max_age)
+
+TIME_OF_LIFES = [
+  tol.new('baby', 0, 2),
+  tol.new('little child', 3, 6),
+  tol.new('child', 7, 12),
+  tol.new('youth', 13, 18),
+  tol.new('adult', 19, Float::INFINITY)
+]
+
 def age_to_label(age)
   0 <= age or raise
 
-  case age
-  when 0..2
-    'baby'
-  when 3..6
-    'little child'
-  when 7..12
-    'child'
-  when 13..18
-    'youth'
-  else
-    'adult'
-  end
+  TIME_OF_LIFES.find {|t| (t.min_age..t.max_age) === age }.label
 end
 
 class MyTest < Test::Unit::TestCase
